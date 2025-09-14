@@ -1,0 +1,11 @@
+# stylua.toml - Stylua configuration for Neovim Lua code formatting
+
+column_width = 100
+indent_type = "Spaces"
+indent_width = 2
+quote_style = "AutoPreferDouble"
+call_parentheses = "Always"
+line_endings = "Unix"
+no_call_parentheses = false
+
+# Exclude some common plugin folders if running stylua on your whole config directory
