@@ -12,7 +12,7 @@ return {
       hidden = true,
     })
 
-    vim.keymap.set("n", "<leader>z", function()
+    vim.keymap.set("n", "<leader>g", function()
       lazygit:toggle()
     end, { desc = "Toggle Lazygit" })
 

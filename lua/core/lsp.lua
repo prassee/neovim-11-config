@@ -4,6 +4,7 @@ vim.lsp.enable({
   "basedpyright",
   "ruff",
 })
+vim.lsp.inlay_hint.enable(true)
 vim.diagnostic.config({
   virtual_lines = true,
   -- virtual_text = true,
@@ -16,10 +17,10 @@ vim.diagnostic.config({
   },
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = "󰅚 ",
-      [vim.diagnostic.severity.WARN] = "󰀪 ",
-      [vim.diagnostic.severity.INFO] = "󰋽 ",
-      [vim.diagnostic.severity.HINT] = "󰌶 ",
+      [vim.diagnostic.severity.ERROR] = "✘",
+      [vim.diagnostic.severity.WARN] = "⚠",
+      [vim.diagnostic.severity.INFO] = "💡",
+      [vim.diagnostic.severity.HINT] = "ℹ",
     },
     numhl = {
       [vim.diagnostic.severity.ERROR] = "ErrorMsg",
