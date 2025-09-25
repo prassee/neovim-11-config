@@ -20,19 +20,19 @@ return {
       "n",
       "<leader>t",
       ":ToggleTerm direction=float<CR>",
-      { noremap = true, silent = true }
+      { noremap = true, silent = true, desc = "Toggle floating terminal" }
     )
     vim.api.nvim_set_keymap(
       "n",
       "<leader>|",
       ":ToggleTerm direction=vertical<CR>",
-      { noremap = true, silent = true }
+      { noremap = true, silent = true, desc = "Toggle vertical terminal" }
     )
     vim.api.nvim_set_keymap(
       "n",
       "<leader>_",
       ":ToggleTerm direction=horizontal<CR>",
-      { noremap = true, silent = true }
+      { noremap = true, silent = true, desc = "Toggle horizontal terminal" }
     )
   end,
 }
