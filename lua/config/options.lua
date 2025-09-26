@@ -6,7 +6,7 @@ vim.opt.relativenumber = false
 vim.opt.mouse = "a"
 vim.opt.showmode = true
 vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
+  vim.opt.clipboard = "unnamedplus"
 end)
 vim.opt.breakindent = true
 vim.opt.undofile = true
@@ -23,3 +23,7 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.winborder = "rounded" -- https://neovim.io/doc/user/options.html#'winborder'
+-- disable swap file
+vim.opt.swapfile = false
+-- disable backup file
+vim.opt.backup = false

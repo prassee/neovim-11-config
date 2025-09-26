@@ -8,8 +8,6 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 vim.keymap.set("n", "<leader>e", ":Ex<cr>", { desc = "Open [E]xplorer" })
 vim.keymap.set({ "n", "i" }, "<C-s>", "<Esc><cmd>w<CR>", { desc = "[S]ave file" })
 vim.keymap.set("n", "<leader><leader>l", "<cmd>Lazy<CR>", { desc = "Open [L]azy" })
-vim.keymap.set("n", "<leader>ff", "<cmd>:FzfLua files<CR>", { desc = "Fuzzy [F]ind files" })
-vim.keymap.set("n", "<leader>fg", "<cmd>:FzfLua global<CR>", { desc = "Fuzzy [G]lobal search" })
 vim.keymap.set({ "n", "i" }, "<leader>a", "<Esc>^i<Esc>", { desc = "Go to beginning of line" })
 vim.keymap.set({ "n", "i" }, "<leader>e", "<End>", { desc = "Go to end of line" })
 
