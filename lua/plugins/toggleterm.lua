@@ -1,12 +1,23 @@
 return {
   "akinsho/toggleterm.nvim",
   config = function()
-require("toggleterm").setup({ shade_terminals = true })
+    require("toggleterm").setup({ shade_terminals = true })
 
-local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
+    local Terminal = require("toggleterm.terminal").Terminal
+    local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
+    local opencode = Terminal:new({ cmd = "opencode", direction = "vertical", hidden = true })
 
-vim.keymap.set("n", "<leader>g", function() lazygit:toggle() end, { desc = "Lazygit" })
-vim.keymap.set("n", "<leader>t", ":ToggleTerm direction=float<CR>", { noremap = true, silent = true })
-end,
+    vim.keymap.set("n", "<leader>g", function()
+      lazygit:toggle()
+    end, { desc = "Lazygit" })
+    vim.keymap.set(
+      "n",
+      "<leader>t",
+      ":ToggleTerm direction=float<CR>",
+      { noremap = true, silent = true }
+    )
+    vim.keymap.set("n", "<leader>o", function()
+      opencode:toggle()
+    end, { desc = "OpenCode" })
+  end,
 }
