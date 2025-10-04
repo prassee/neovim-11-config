@@ -97,6 +97,17 @@ return {
 		keymap("n", "<leader>/", "<cmd>FzfLua lgrep_curbuf<cr>", { desc = "[/] Fuzzily search in current buffer" })
 		keymap("n", "<leader>s/", "<cmd>FzfLua live_grep<cr>", { desc = "[S]earch [/] in Open Files" })
 		keymap("n", "<leader>sn", "<cmd>FzfLua files cwd=~/.config/nvim<cr>", { desc = "[S]earch [N]eovim files" })
+		keymap("n", "<leader>sb", "<cmd>FzfLua git_branches<cr>", { desc = "[S]earch [B]ranches" })
+		keymap("n", "<leader>fld", "<cmd>FzfLua lsp_definitions<cr>", { desc = "[F]ind [L]SP [D]efinitions" })
+		keymap("n", "<leader>flr", "<cmd>FzfLua lsp_references<cr>", { desc = "[F]ind [L]SP [R]eferences" })
+		keymap("n", "<leader>fls", "<cmd>FzfLua lsp_document_symbols<cr>", { desc = "[F]ind [L]SP [S]ymbols" })
+		keymap("n", "<leader>flw", "<cmd>FzfLua lsp_workspace_symbols<cr>", { desc = "[F]ind [L]SP [W]orkspace symbols" })
+		keymap("n", "<leader>flc", "<cmd>FzfLua lsp_incoming_calls<cr>", { desc = "[F]ind [L]SP [C]alls" })
+		keymap("n", "<leader>flo", "<cmd>FzfLua lsp_outgoing_calls<cr>", { desc = "[F]ind [L]SP [O]utgoing calls" })
+		keymap("n", "<leader>fs", "<cmd>FzfLua lsp_document_symbols</cr>", { desc = "[F]ind [S]ymbols" })
+		keymap("n", "<leader>fc", "<cmd>FzfLua commands<cr>", { desc = "[F]ind [C]ommands" })
+		keymap("n", "<leader>fm", "<cmd>FzfLua marks<cr>", { desc = "[F]ind [M]arks" })
+		keymap("n", "<leader>fk", "<cmd>FzfLua keymaps<cr>", { desc = "[F]ind [K]eymaps" })
+		keymap("n", "<leader>ft", "<cmd>FzfLua tabs<cr>", { desc = "[F]ind open [T]abs" })
 	end,
 }
-
