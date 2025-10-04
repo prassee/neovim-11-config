@@ -21,7 +21,7 @@ opt.cursorline = true
 opt.scrolloff = 10
 opt.swapfile = false
 opt.backup = false
-
+opt.number = true
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.winborder = "rounded" -- https://neovim.io/doc/user/options.html#'winborder'

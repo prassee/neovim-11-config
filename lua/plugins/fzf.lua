@@ -18,7 +18,13 @@ return {
     vim.keymap.set("n", "<leader>fw", fzf.lsp_workspace_symbols, { desc = "LSP Workspace Symbols" })
     vim.keymap.set("n", "<leader>fh", fzf.help_tags, { desc = "Help Tags" })
     -- show workspace diagnostics
-    -- vim.keymap.set("n", "<leader>fD", fzf.diagnostics, { desc = "Diagnostics" })
+    vim.keymap.set(
+      "n",
+      "<leader>fD",
+      ":FzfLua lsp_workspace_diagnostics<CR>",
+      { desc = "LSP Workspace Diagnostics" }
+    )
+    vim.keymap.set("n", "<leader>fA", ":FzfLua lsp_code_actions<CR>", { desc = "LSP Code Actions" })
     -- configure keymap to open fzf-lua's git status
     vim.keymap.set("n", "<leader>fgs", fzf.git_status, { desc = "Git Status" })
     vim.keymap.set("n", "<leader>fgc", fzf.git_commits, { desc = "Git Commits" })
