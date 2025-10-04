@@ -9,16 +9,20 @@ return {
     vim.keymap.set("n", "<leader>fF", function()
       require("fzf-lua").global()
     end, { desc = "Find files (cwd)" })
-    vim.keymap.set("n", "<leader>fg", fzf.live_grep, { desc = "Grep" })
+    vim.keymap.set("n", "<leader>fG", fzf.live_grep, { desc = "Grep" })
     vim.keymap.set("n", "<leader>fb", fzf.buffers, { desc = "Buffers" })
     vim.keymap.set("n", "<leader>fr", fzf.lsp_references, { desc = "LSP References" })
     vim.keymap.set("n", "<leader>fd", fzf.lsp_definitions, { desc = "LSP Definitions" })
-    vim.keymap.set("n", "<leader>fc", fzf.lsp_code_actions, { desc = "LSP Code Actions" })
+    vim.keymap.set("n", "<leader>fca", fzf.lsp_code_actions, { desc = "LSP Code Actions" })
     vim.keymap.set("n", "<leader>fs", fzf.lsp_document_symbols, { desc = "LSP Document Symbols" })
     vim.keymap.set("n", "<leader>fw", fzf.lsp_workspace_symbols, { desc = "LSP Workspace Symbols" })
     vim.keymap.set("n", "<leader>fh", fzf.help_tags, { desc = "Help Tags" })
+    -- show workspace diagnostics
+    -- vim.keymap.set("n", "<leader>fD", fzf.diagnostics, { desc = "Diagnostics" })
     -- configure keymap to open fzf-lua's git status
-    vim.keymap.set("n", "<leader>gs", fzf.git_status, { desc = "Git Status" })
-    vim.keymap.set("n", "<leader>gc", fzf.git_commits, { desc = "Git Commits" })
+    vim.keymap.set("n", "<leader>fgs", fzf.git_status, { desc = "Git Status" })
+    vim.keymap.set("n", "<leader>fgc", fzf.git_commits, { desc = "Git Commits" })
+    -- keymap to list all commands
+    vim.keymap.set("n", "<leader>fC", fzf.commands, { desc = "Commands" })
   end,
 }
