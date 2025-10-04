@@ -1,13 +1,18 @@
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
   dependencies = {
+    { "github/copilot.vim" },
     { "nvim-lua/plenary.nvim", branch = "master" },
   },
   build = "make tiktoken",
   config = function()
     require("CopilotChat").setup()
-
-    vim.keymap.set("n", "<leader>zc", "<cmd>CopilotChat<cr>", { desc = "Open Chat" })
-    vim.keymap.set("v", "<leader>ze", "<cmd>CopilotChatExplain<cr>", { desc = "Explain Code" })
   end,
+  keys = {
+    { "<leader>zc", "<cmd>CopilotChat<cr>", desc = "Open Copilot Chat", mode = "n" },
+    { "<leader>ze", "<cmd>CopilotChatExplain<cr>", desc = "Explain Code", mode = "v" },
+    { "<leader>zr", "<cmd>CopilotChatReview<cr>", desc = "Review Code", mode = "v" },
+    { "<leader>zf", "<cmd>CopilotChatFix<cr>", desc = "Fix Code issues", mode = "v" },
+    { "<leader>zo", "<cmd>CopilotChatOptimize<cr>", desc = "Optimize Code", mode = "v" },
+  },
 }

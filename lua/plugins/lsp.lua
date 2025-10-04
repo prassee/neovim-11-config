@@ -34,28 +34,145 @@ return {
       },
     })
 
-    local lspconfig = require("lspconfig")
+    -- local lspconfig = require("lspconfig")
     -- lspconfig = vim.lsp.config
 
     vim.lsp.config("basedpyright", {
+      cmd = { "basedpyright-langserver", "--stdio" },
       filetypes = { "python" },
-      root_dir = lspconfig.util.root_pattern(
+      root_markers = {
         "pyproject.toml",
         "setup.py",
         "setup.cfg",
         "requirements.txt",
         "Pipfile",
         "pyrightconfig.json",
-        ".git"
-      ),
+        ".git",
+      },
+      settings = {
+        basedpyright = {
+          analysis = {
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            diagnosticMode = "workspace",
+            typeCheckingMode = "basic",
+          },
+        },
+      },
     })
 
     vim.lsp.config("gopls", {
-      filetypes = { "go", "gomod", "gowork", "gotmpl", "gosum" },
-      root_dir = lspconfig.util.root_pattern("go.mod", "go.work", ".git"),
+      cmd = { "gopls" }, -- Command to start the language server
+      filetypes = { "go", "gomod", "gowork", "gotmpl", "gosum" }, -- File types that this server will handle
+      root_markers = { "go.mod", "go.work", ".git" }, -- Markers to identify the root of the project
+      settings = { -- Settings for the language server
+        gopls = {
+          gofumpt = true,
+          codelenses = {
+            gc_details = false,
+            generate = true,
+            regenerate_cgo = true,
+            run_govulncheck = true,
+            test = true,
+            tidy = true,
+            upgrade_dependency = true,
+            vendor = true,
+          },
+          hints = {
+            assignVariableTypes = true,
+            compositeLiteralFields = true,
+            compositeLiteralTypes = true,
+            constantValues = true,
+            functionTypeParameters = true,
+            parameterNames = true,
+            rangeVariableTypes = true,
+          },
+          analyses = {
+            nilness = true,
+            unusedparams = true,
+            unusedwrite = true,
+            useany = true,
+            unreachable = true,
+            modernize = true,
+            stylecheck = true,
+            appends = true,
+            asmdecl = true,
+            assign = true,
+            atomic = true,
+            bools = true,
+            buildtag = true,
+            cgocall = true,
+            composite = true,
+            contextcheck = true,
+            deba = true,
+            atomicalign = true,
+            composites = true,
+            copylocks = true,
+            deepequalerrors = true,
+            defers = true,
+            deprecated = true,
+            directive = true,
+            embed = true,
+            errorsas = true,
+            fillreturns = true,
+            framepointer = true,
+            gofix = true,
+            hostport = true,
+            infertypeargs = true,
+            lostcancel = true,
+            httpresponse = true,
+            ifaceassert = true,
+            loopclosure = true,
+            nilfunc = true,
+            nonewvars = true,
+            noresultvalues = true,
+            printf = true,
+            shadow = true,
+            shift = true,
+            sigchanyzer = true,
+            simplifycompositelit = true,
+            simplifyrange = true,
+            simplifyslice = true,
+            slog = true,
+            sortslice = true,
+            stdmethods = true,
+            stdversion = true,
+            stringintconv = true,
+            structtag = true,
+            testinggoroutine = true,
+            tests = true,
+            timeformat = true,
+            unmarshal = true,
+            unsafeptr = true,
+            unusedfunc = true,
+            unusedresult = true,
+            waitgroup = true,
+            yield = true,
+            unusedvariable = true,
+          },
+          usePlaceholders = true,
+          completeUnimported = true,
+          staticcheck = true,
+          directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+          semanticTokens = true,
+        },
+      },
     })
 
     vim.lsp.config("lua_ls", {
+      filetypes = {
+        "lua",
+      },
+      root_markers = {
+        ".git",
+        ".luacheckrc",
+        ".luarc.json",
+        ".luarc.jsonc",
+        ".stylua.toml",
+        "selene.toml",
+        "selene.yml",
+        "stylua.toml",
+      },
       settings = {
         Lua = {
           runtime = { version = "LuaJIT" },
@@ -64,6 +181,8 @@ return {
           telemetry = { enable = false },
         },
       },
+      single_file_support = true,
+      log_level = vim.lsp.protocol.MessageType.Warning,
     })
   end,
 }

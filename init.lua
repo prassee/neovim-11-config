@@ -11,7 +11,8 @@ require("core.autocmds")
 -- Bootstrap lazy.nvim and plugins
 -- require("plugins")
 --
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local data_path = vim.fn.stdpath("data")
+local lazypath = data_path .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -23,8 +24,6 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
--- Load all plugins
-require("lazy").setup({
-  { import = "plugins" },
-})
+require("lazy").setup({ { import = "plugins" } })
