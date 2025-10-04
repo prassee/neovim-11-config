@@ -115,9 +115,11 @@ return {
 					window = {
 						layout = "float",
 						relative = "cursor",
-						width = 1,
+						width = 80,
 						height = 0.4,
 						row = 1,
+						col = 0,
+						border = "rounded",
 					},
 				})
 			end, { nargs = "*", range = true })
@@ -131,7 +133,10 @@ return {
 			keymap("n", "<leader>cce", "<cmd>CopilotChatExplain<cr>", { desc = "CopilotChat - Explain code" })
 			keymap("n", "<leader>cct", "<cmd>CopilotChatTests<cr>", { desc = "CopilotChat - Generate tests" })
 			keymap("v", "<leader>ccv", ":CopilotChatVisual ", { desc = "CopilotChat - Open in vertical split" })
-			keymap("v", "<leader>ccx", ":CopilotChatInline<cr>", { desc = "CopilotChat - Inline chat" })
+			keymap("v", "<leader>ccx", ":CopilotChatInline ", { desc = "CopilotChat - Inline chat" })
+			keymap("v", "<leader>cce", "<cmd>CopilotChatExplain<cr>", { desc = "CopilotChat - Explain selected code" })
+			keymap("v", "<leader>ccr", "<cmd>CopilotChatReview<cr>", { desc = "CopilotChat - Review selected code" })
+			keymap("v", "<leader>ccf", "<cmd>CopilotChatFix<cr>", { desc = "CopilotChat - Fix selected code" })
 			keymap("n", "<leader>ccf", "<cmd>CopilotChatFixDiagnostic<cr>", { desc = "CopilotChat - Fix Diagnostic" })
 			keymap(
 				"n",
