@@ -118,25 +118,26 @@ A modern, feature-rich Neovim configuration built specifically for Neovim 0.11.4
 ## 📁 Configuration Structure
 
 ```
-├── init.lua                 # Entry point
-├── lua/
-│   ├── config/
-│   │   ├── lazy.lua        # Lazy.nvim setup
-│   │   ├── options.lua     # Neovim options
-│   │   └── keymaps.lua     # General keymaps
-│   └── plugins/
-│       ├── blink-cmp.lua   # Completion engine
-│       ├── colorscheme.lua # Color schemes
-│       ├── conform.lua     # Auto-formatting
-│       ├── copilot.lua     # AI assistance
-│       ├── fzf-lua.lua     # Fuzzy finder
-│       ├── gitsigns.lua    # Git integration
-│       ├── lsp.lua         # Language servers
-│       ├── lualine.lua     # Statusline
-│       ├── mason.lua       # Package manager
-│       ├── neo-tree.lua    # File explorer
-│       ├── treesitter.lua  # Syntax highlighting
-│       └── which-key.lua   # Keybinding help
+├── init.lua
+└── lua/
+    ├── core/
+    │   ├── options.lua
+    │   ├── keymaps.lua
+    │   └── autocmds.lua
+    └── plugins/
+        ├── init.lua         -- lazy.nvim bootstrap
+        ├── lsp.lua          -- Mason + LSP
+        ├── cmp.lua          -- blink.cmp + LuaSnip
+        ├── conform.lua      -- formatting
+        ├── comment.lua      -- Comment.nvim
+        ├── oil.lua          -- file explorer
+        ├── telescope.lua    -- fzf-lua (telescope alternative)
+        ├── toggleterm.lua   -- terminal
+        ├── tokyonight.lua   -- colorscheme
+        ├── lualine.lua      -- statusline
+        ├── which-key.lua    -- key hints
+        ├── copilot.lua      -- GitHub Copilot
+        └── copilot-chat.lua -- Copilot Chat
 ```
 
 ## 🎨 Customization
