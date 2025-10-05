@@ -11,11 +11,11 @@ return {
 
     cmp.setup({
       fuzzy = { implementation = "lua" },
-  signature = { enabled = true },
-  keymap = {
-    ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-    ["<CR>"] = { "accept", "fallback" },
-  },
+      signature = { enabled = true },
+      keymap = {
+        ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<CR>"] = { "accept", "fallback" },
+      },
     })
   end,
 }
