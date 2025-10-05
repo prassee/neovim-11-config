@@ -6,11 +6,14 @@ return {
     local Terminal = require("toggleterm.terminal").Terminal
     local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
     local opencode = Terminal:new({ cmd = "opencode", direction = "float", hidden = true })
+    local thoth = Terminal:new({ cmd = "thoth", direction = "float", hidden = true })
 
     vim.keymap.set("n", "<leader>g", function()
       lazygit:toggle()
     end, { desc = "Lazygit" })
-
+    vim.keymap.set("n", "<leader>T", function()
+      thoth:toggle()
+    end, { desc = "Thoth" })
     vim.keymap.set(
       "n",
       "<leader>t",
