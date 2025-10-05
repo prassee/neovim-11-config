@@ -7,6 +7,7 @@ return {
     local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
     local opencode = Terminal:new({ cmd = "opencode", direction = "float", hidden = true })
     local thoth = Terminal:new({ cmd = "thoth", direction = "float", hidden = true })
+    local flow_tracker = Terminal:new({ cmd = "flow_state", direction = "float", hidden = true })
 
     vim.keymap.set("n", "<leader>g", function()
       lazygit:toggle()
@@ -14,6 +15,9 @@ return {
     vim.keymap.set("n", "<leader>T", function()
       thoth:toggle()
     end, { desc = "Thoth" })
+    vim.keymap.set("n", "<leader>H", function()
+      flow_tracker:toggle()
+    end, { desc = "Flow Tracker" })
     vim.keymap.set(
       "n",
       "<leader>t",
