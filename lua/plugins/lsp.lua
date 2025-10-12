@@ -9,7 +9,15 @@ return {
     require("mason").setup()
     require("mason-lspconfig").setup()
     require("mason-tool-installer").setup({
-      ensure_installed = { "lua_ls", "stylua", "basedpyright", "ruff", "gopls" },
+      ensure_installed = {
+        "lua_ls",
+        "stylua",
+        "basedpyright",
+        "ruff",
+        "gopls",
+        "dockerls",
+        -- "metals",
+      },
     })
 
     -- Diagnostics & inlay hints
@@ -157,6 +165,30 @@ return {
           semanticTokens = true,
         },
       },
+    })
+
+    -- -- Scala (Metals)
+    -- vim.lsp.config("metals", {
+    --   cmd = { "metals" },
+    --   filetypes = { "scala", "sbt" },
+    --   root_markers = { "build.sbt", "build.sc", "scala", ".git" },
+    --   init_options = { statusBarProvider = "on" },
+    --   settings = {
+    --     metals = {
+    --       showImplicitArguments = true,
+    --       showInferredType = true,
+    --       superMethodLensesEnabled = true,
+    --       scalafmt = { enable = true },
+    --     },
+    --   },
+    --   single_file_support = true,
+    -- })
+
+    vim.lsp.config("dockerls", {
+      cmd = { "docker-langserver", "--stdio" },
+      filetypes = { "dockerfile" },
+      root_markers = { "Dockerfile", "Containerfile", ".git" },
+      single_file_support = true,
     })
 
     vim.lsp.config("lua_ls", {
