@@ -2,6 +2,11 @@
 
 A modern, feature-rich Neovim configuration built specifically for Neovim 0.11.4 and later versions, utilizing the latest features and improvements.
 
+## TODO 
+- [ ] add lsp support for TOML 
+- [ ] add lsp support for JSON
+- [ ] add lsp support for Markdown with mermaid diagrams preview
+
 ## ✨ Features
 
 ### Core Functionality
