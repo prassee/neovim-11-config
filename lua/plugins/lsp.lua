@@ -4,6 +4,7 @@ return {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    "b0o/schemastore.nvim",
   },
   config = function()
     require("mason").setup()
@@ -16,6 +17,11 @@ return {
         "ruff",
         "gopls",
         "dockerls",
+        "taplo",
+        "jsonls",
+        "marksman",
+        "prettier",
+        "prettierd",
         -- "metals",
       },
     })
@@ -215,6 +221,33 @@ return {
       },
       single_file_support = true,
       log_level = vim.lsp.protocol.MessageType.Warning,
+    })
+
+    vim.lsp.config("taplo", {
+      cmd = { "taplo", "lsp", "stdio" },
+      filetypes = { "toml" },
+      root_markers = { "*.toml", ".git" },
+      single_file_support = true,
+    })
+
+    vim.lsp.config("jsonls", {
+      cmd = { "vscode-json-language-server", "--stdio" },
+      filetypes = { "json", "jsonc" },
+      root_markers = { "package.json", ".git" },
+      single_file_support = true,
+      settings = {
+        json = {
+          schemas = require('schemastore').json.schemas(),
+          validate = { enable = true },
+        },
+      },
+    })
+
+    vim.lsp.config("marksman", {
+      cmd = { "marksman", "server" },
+      filetypes = { "markdown", "markdown.mdx" },
+      root_markers = { "README.md", ".git" },
+      single_file_support = true,
     })
   end,
 }

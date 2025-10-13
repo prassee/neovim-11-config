@@ -6,6 +6,10 @@ require("conform").setup({
     lua = { "stylua" },
     go = { "goimports", "golines", "gofmt" },
     python = { "ruff", "black" },
+    toml = { "taplo" },
+    json = { "prettier" },
+    jsonc = { "prettier" },
+    markdown = { "prettier" },
   },
   format_on_save = { lsp_fallback = true },
 })

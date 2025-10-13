@@ -44,3 +44,4 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 -- Tools / Plugins
 vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Oil File Explorer" })
 vim.keymap.set("n", "<leader><leader>l", "<cmd>Lazy<CR>", { desc = "Open [L]azy" })
+vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })

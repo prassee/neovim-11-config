@@ -3,9 +3,9 @@
 A modern, feature-rich Neovim configuration built specifically for Neovim 0.11.4 and later versions, utilizing the latest features and improvements.
 
 ## TODO 
-- [ ] add lsp support for TOML 
-- [ ] add lsp support for JSON
-- [ ] add lsp support for Markdown with mermaid diagrams preview
+- [x] add lsp support for TOML 
+- [x] add lsp support for JSON
+- [x] add lsp support for Markdown with mermaid diagrams preview
 
 ## ✨ Features
 
@@ -15,6 +15,9 @@ A modern, feature-rich Neovim configuration built specifically for Neovim 0.11.4
   - Lua (`lua_ls`)
   - Python (`basedpyright`, `ruff`)
   - Go (`gopls`)
+  - TOML (`taplo`)
+  - JSON (`jsonls`)
+  - Markdown (`marksman`)
 - **Auto-completion** - `blink.cmp` for fast, modern completion
 - **Fuzzy Finding** - `fzf-lua` for blazing fast file/text search
 - **Syntax Highlighting** - Treesitter with extensive language support
@@ -30,6 +33,7 @@ A modern, feature-rich Neovim configuration built specifically for Neovim 0.11.4
 - **lualine** - Beautiful and informative statusline
 - **gitsigns** - Git integration with visual indicators
 - **Multiple colorschemes** - Tokyo Night and Catppuccin
+- **Markdown Preview** - Live preview with Mermaid diagram support
 
 ### Development Tools
 - **Mason** - Automatic LSP server, formatter, and linter management
@@ -120,6 +124,11 @@ A modern, feature-rich Neovim configuration built specifically for Neovim 0.11.4
 | `<leader>cce` | Explain code |
 | `<leader>cct` | Generate tests |
 
+### Markdown
+| Key | Action |
+|-----|--------|
+| `<leader>mp` | Toggle Markdown Preview |
+
 ## 📁 Configuration Structure
 
 ```
@@ -195,4 +204,4 @@ This configuration is designed to be:
 - **Complete**: Everything needed for development
 - **Extensible**: Easy to customize and extend
 
-The configuration automatically installs and configures everything needed for a productive development environment with Lua, Python, and Go support out of the box.
+The configuration automatically installs and configures everything needed for a productive development environment with Lua, Python, Go, TOML, JSON, and Markdown support out of the box.
