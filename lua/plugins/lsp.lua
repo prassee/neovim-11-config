@@ -174,23 +174,6 @@ return {
       },
     })
 
-    -- -- Scala (Metals)
-    -- vim.lsp.config("metals", {
-    --   cmd = { "metals" },
-    --   filetypes = { "scala", "sbt" },
-    --   root_markers = { "build.sbt", "build.sc", "scala", ".git" },
-    --   init_options = { statusBarProvider = "on" },
-    --   settings = {
-    --     metals = {
-    --       showImplicitArguments = true,
-    --       showInferredType = true,
-    --       superMethodLensesEnabled = true,
-    --       scalafmt = { enable = true },
-    --     },
-    --   },
-    --   single_file_support = true,
-    --     })
-
     vim.lsp.config("rust_analyzer", {
       cmd = { "rust-analyzer" },
       filetypes = { "rust" },
@@ -292,7 +275,7 @@ return {
       single_file_support = true,
       settings = {
         json = {
-          schemas = require('schemastore').json.schemas(),
+          schemas = require("schemastore").json.schemas(),
           validate = { enable = true },
         },
       },

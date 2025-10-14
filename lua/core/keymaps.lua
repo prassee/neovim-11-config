@@ -1,7 +1,7 @@
 -- Global Keymaps
 
 -- Saving and Quitting
-vim.keymap.set({ "n", "i" }, "<C-s>", "<Esc><cmd>w<CR>", { desc = "Save" })
+vim.keymap.set({ "n", "i" }, "<leader>s", "<Esc><cmd>w<CR>", { desc = "Save" })
 vim.keymap.set("n", "<leader>q", ":wqall<CR>", { desc = "Quit" })
 
 -- Search
@@ -44,4 +44,11 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 -- Tools / Plugins
 vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Oil File Explorer" })
 vim.keymap.set("n", "<leader><leader>l", "<cmd>Lazy<CR>", { desc = "Open [L]azy" })
-vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
+vim.keymap.set(
+  "n",
+  "<leader>mp",
+  "<cmd>MarkdownPreviewToggle<CR>",
+  { desc = "Toggle Markdown Preview" }
+)
+
+vim.keymap.set("n", "<leader>y", "<cmd>%y+<CR>", { desc = "Yank entire buffer to system clipboard" })
