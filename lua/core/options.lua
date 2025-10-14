@@ -2,6 +2,19 @@ local opt = vim.opt
 
 opt.mouse = "a"
 opt.showmode = true
+-- Use xclip for clipboard
+vim.g.clipboard = {
+  name = 'xclip',
+  copy = {
+    ['+'] = 'xclip -selection clipboard',
+    ['*'] = 'xclip -selection primary',
+  },
+  paste = {
+    ['+'] = 'xclip -selection clipboard -o',
+    ['*'] = 'xclip -selection primary -o',
+  },
+  cache_enabled = 0,
+}
 vim.schedule(function()
   opt.clipboard = "unnamedplus"
 end)

@@ -25,14 +25,14 @@ vim.keymap.set(
 vim.keymap.set("n", "<M-S-right>", "<Esc>:bnext<Esc>", { desc = "Go to next visited buffer" })
 
 -- Window Management
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus left" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus down" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus up" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus right" })
-vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Vertical Split" })
-vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Horizontal Split" })
-vim.keymap.set("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close Split" })
-vim.keymap.set("n", "<leader>so", "<cmd>only<CR>", { desc = "Keep Only This Split" })
+vim.keymap.set("n", "<leader>n<left>", "<C-w><C-h>", { desc = "Move focus left" })
+vim.keymap.set("n", "<leader>n<down>", "<C-w><C-j>", { desc = "Move focus down" })
+vim.keymap.set("n", "<leader>n<up>", "<C-w><C-k>", { desc = "Move focus up" })
+vim.keymap.set("n", "<leader>n<right>", "<C-w><C-l>", { desc = "Move focus right" })
+vim.keymap.set("n", "<leader>Sv", ":vsplit<CR>", { desc = "Vertical Split" })
+vim.keymap.set("n", "<leader>Sh", ":split<CR>", { desc = "Horizontal Split" })
+vim.keymap.set("n", "<leader>Sc", "<cmd>close<CR>", { desc = "Close Split" })
+vim.keymap.set("n", "<leader>So", "<cmd>only<CR>", { desc = "Keep Only This Split" })
 
 -- Editing: Move Lines
 vim.keymap.set("n", "<M-down>", ":m .+1<CR>==", { desc = "Move line up" }) -- move line up(n)
@@ -51,4 +51,9 @@ vim.keymap.set(
   { desc = "Toggle Markdown Preview" }
 )
 
-vim.keymap.set("n", "<leader>y", "<cmd>%y+<CR>", { desc = "Yank entire buffer to system clipboard" })
+vim.keymap.set(
+  "n",
+  "<leader>y",
+  "<cmd>%y+<CR>",
+  { desc = "Yank entire buffer to system clipboard" }
+)
