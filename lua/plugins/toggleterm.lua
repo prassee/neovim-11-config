@@ -9,7 +9,7 @@ return {
     local thoth = Terminal:new({ cmd = "thoth", direction = "float", hidden = true })
     local flow_tracker = Terminal:new({ cmd = "flow_state", direction = "float", hidden = true })
 
-    vim.keymap.set("n", "<leader>g", function()
+    vim.keymap.set("n", "<leader>G", function()
       lazygit:toggle()
     end, { desc = "Lazygit" })
     vim.keymap.set("n", "<leader>T", function()

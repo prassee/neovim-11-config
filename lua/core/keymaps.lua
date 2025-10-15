@@ -25,10 +25,10 @@ vim.keymap.set(
 vim.keymap.set("n", "<M-S-right>", "<Esc>:bnext<Esc>", { desc = "Go to next visited buffer" })
 
 -- Window Management
-vim.keymap.set("n", "<leader>n<left>", "<C-w><C-h>", { desc = "Move focus left" })
-vim.keymap.set("n", "<leader>n<down>", "<C-w><C-j>", { desc = "Move focus down" })
-vim.keymap.set("n", "<leader>n<up>", "<C-w><C-k>", { desc = "Move focus up" })
-vim.keymap.set("n", "<leader>n<right>", "<C-w><C-l>", { desc = "Move focus right" })
+vim.keymap.set("n", "<leader>g<left>", "<C-w><C-h>", { desc = "Move focus left" })
+vim.keymap.set("n", "<leader>g<down>", "<C-w><C-j>", { desc = "Move focus down" })
+vim.keymap.set("n", "<leader>g<up>", "<C-w><C-k>", { desc = "Move focus up" })
+vim.keymap.set("n", "<leader>g<right>", "<C-w><C-l>", { desc = "Move focus right" })
 vim.keymap.set("n", "<leader>Sv", ":vsplit<CR>", { desc = "Vertical Split" })
 vim.keymap.set("n", "<leader>Sh", ":split<CR>", { desc = "Horizontal Split" })
 vim.keymap.set("n", "<leader>Sc", "<cmd>close<CR>", { desc = "Close Split" })
