@@ -11,8 +11,8 @@ require("core.autocmds")
 -- Bootstrap lazy.nvim and plugins
 -- require("plugins")
 --
-local data_path = vim.fn.stdpath("data")
-local lazypath = data_path .. "/lazy/lazy.nvim"
+local config_data_path = vim.fn.stdpath("data")
+local lazypath = config_data_path .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({

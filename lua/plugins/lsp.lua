@@ -23,7 +23,6 @@ return {
         "marksman",
         "prettier",
         "prettierd",
-        -- "metals",
       },
     })
 

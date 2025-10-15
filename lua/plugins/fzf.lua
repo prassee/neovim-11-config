@@ -17,6 +17,7 @@ return {
     vim.keymap.set("n", "<leader>fs", fzf.lsp_document_symbols, { desc = "LSP Document Symbols" })
     vim.keymap.set("n", "<leader>fw", fzf.lsp_workspace_symbols, { desc = "LSP Workspace Symbols" })
     vim.keymap.set("n", "<leader>fh", fzf.help_tags, { desc = "Help Tags" })
+    vim.keymap.set("n", "<leader>fR", vim.lsp.buf.rename, { desc = "LSP rename" })
     -- show workspace diagnostics
     vim.keymap.set(
       "n",
