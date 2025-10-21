@@ -3,6 +3,7 @@
 -- Saving and Quitting
 vim.keymap.set({ "n", "i" }, "<leader>s", "<Esc><cmd>w<CR>", { desc = "Save" })
 vim.keymap.set("n", "<leader>q", ":wqall<CR>", { desc = "Quit" })
+vim.keymap.set("n", "<leader>r", "<cmd>checktime<CR>", { desc = "Refresh file if modified outside" })
 
 -- Search
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -57,3 +58,4 @@ vim.keymap.set(
   "<cmd>%y+<CR>",
   { desc = "Yank entire buffer to system clipboard" }
 )
+vim.keymap.set({ "n", "v", "i" }, "<C-a>", "<Esc>ggVG", { desc = "Select all text" })
