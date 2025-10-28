@@ -4,14 +4,14 @@ opt.mouse = "a"
 opt.showmode = true
 -- Use xclip for clipboard
 vim.g.clipboard = {
-  name = 'xclip',
+  name = "xclip",
   copy = {
-    ['+'] = 'xclip -selection clipboard',
-    ['*'] = 'xclip -selection primary',
+    ["+"] = "xclip -selection clipboard",
+    ["*"] = "xclip -selection primary",
   },
   paste = {
-    ['+'] = 'xclip -selection clipboard -o',
-    ['*'] = 'xclip -selection primary -o',
+    ["+"] = "xclip -selection clipboard -o",
+    ["*"] = "xclip -selection primary -o",
   },
   cache_enabled = 0,
 }
@@ -42,5 +42,4 @@ vim.opt.winborder = "rounded" -- https://neovim.io/doc/user/options.html#'winbor
 vim.opt.swapfile = false
 -- disable backup file
 vim.opt.backup = false
-
 vim.g.copilot_no_tab_map = true

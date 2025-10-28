@@ -3,7 +3,12 @@
 -- Saving and Quitting
 vim.keymap.set({ "n", "i" }, "<leader>s", "<Esc><cmd>w<CR>", { desc = "Save" })
 vim.keymap.set("n", "<leader>q", ":wqall<CR>", { desc = "Quit" })
-vim.keymap.set("n", "<leader>r", "<cmd>checktime<CR>", { desc = "Refresh file if modified outside" })
+vim.keymap.set(
+  "n",
+  "<leader>r",
+  "<cmd>checktime<CR>",
+  { desc = "Refresh file if modified outside" }
+)
 
 -- Search
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -44,7 +49,9 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 
 -- Tools / Plugins
 vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Oil File Explorer" })
-vim.keymap.set("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "Open [L]azy" })
+vim.keymap.set("n", "<leader>L", "<cmd>Lazy update<CR>", { desc = "Open [L]azy" })
+vim.keymap.set("n", "<leader>M", "<cmd>MasonToolsUpdate<CR>", { desc = "Open [L]azy" })
+
 vim.keymap.set(
   "n",
   "<leader>mp",

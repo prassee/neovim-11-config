@@ -36,3 +36,15 @@ return {
     vim.cmd([[colorscheme forest-night]])
   end,
 }
+
+-- return {
+--   "abhilash26/mapledark.nvim",
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     vim.cmd.colorscheme("mapledark")
+--   end,
+-- }
+
+-- vim.cmd.colorscheme("prasiodark")
+-- return {}
