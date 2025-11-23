@@ -2,7 +2,11 @@ return {
   "ibhagwan/fzf-lua",
   config = function()
     local fzf = require("fzf-lua")
-    fzf.setup()
+    fzf.setup({
+      files = {
+        cmd = "git ls-files --cached --others --exclude-standard 2>/dev/null || rg --files --hidden --glob '!/.git/*'",
+      },
+    })
     fzf.register_ui_select()
 
     vim.keymap.set("n", "<leader>ff", fzf.files, { desc = "Find files" })

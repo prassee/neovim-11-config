@@ -13,13 +13,14 @@ return {
       ensure_installed = {
         "lua_ls",
         "stylua",
-        "basedpyright",
-        "ruff",
+        -- "basedpyright",
+        -- "ruff",
         "gopls",
         "rust_analyzer",
         "dockerls",
         "taplo",
         "jsonls",
+        "pyrefly",
         "marksman",
         "prettier",
         "prettierd",
@@ -50,30 +51,33 @@ return {
 
     -- local lspconfig = require("lspconfig")
     -- lspconfig = vim.lsp.config
-
-    vim.lsp.config("basedpyright", {
-      cmd = { "basedpyright-langserver", "--stdio" },
-      filetypes = { "python" },
-      root_markers = {
-        "pyproject.toml",
-        "setup.py",
-        "setup.cfg",
-        "requirements.txt",
-        "Pipfile",
-        "pyrightconfig.json",
-        ".git",
-      },
-      settings = {
-        basedpyright = {
-          analysis = {
-            autoSearchPaths = true,
-            useLibraryCodeForTypes = true,
-            diagnosticMode = "workspace",
-            typeCheckingMode = "basic",
-          },
-        },
-      },
+    vim.lsp.config("pyrefly", {
+      cmd = { "pyrefly", "lsp" },
     })
+
+    -- vim.lsp.config("basedpyright", {
+    --   cmd = { "basedpyright-langserver", "--stdio" },
+    --   filetypes = { "python" },
+    --   root_markers = {
+    --     "pyproject.toml",
+    --     "setup.py",
+    --     "setup.cfg",
+    --     "requirements.txt",
+    --     "Pipfile",
+    --     "pyrightconfig.json",
+    --     ".git",
+    --   },
+    --   settings = {
+    --     basedpyright = {
+    --       analysis = {
+    --         autoSearchPaths = true,
+    --         useLibraryCodeForTypes = true,
+    --         diagnosticMode = "workspace",
+    --         typeCheckingMode = "basic",
+    --       },
+    --     },
+    --   },
+    -- })
 
     vim.lsp.config("gopls", {
       cmd = { "gopls" }, -- Command to start the language server
