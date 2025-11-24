@@ -24,6 +24,7 @@ return {
         "marksman",
         "prettier",
         "prettierd",
+        "tinymist",
       },
     })
 
