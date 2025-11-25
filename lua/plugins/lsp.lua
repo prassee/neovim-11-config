@@ -13,14 +13,13 @@ return {
       ensure_installed = {
         "lua_ls",
         "stylua",
-        -- "basedpyright",
         -- "ruff",
+        "pyrefly",
         "gopls",
         "rust_analyzer",
         "dockerls",
         "taplo",
         "jsonls",
-        "pyrefly",
         "marksman",
         "prettier",
         "prettierd",
@@ -30,6 +29,41 @@ return {
 
     -- Diagnostics & inlay hints
     vim.lsp.inlay_hint.enable(true)
+
+    -- Configure signature help handler appearance (avoid deprecated vim.lsp.with)
+    vim.lsp.handlers["textDocument/signatureHelp"] = function(err, result, ctx, cfg)
+      cfg = cfg or {}
+      if cfg.border == nil then
+        cfg.border = "rounded"
+      end
+      if cfg.silent == nil then
+        cfg.silent = true
+      end
+      return vim.lsp.handlers.signature_help(err, result, ctx, cfg)
+    end
+
+    vim.keymap.set('i', '<C-k>', function()
+      pcall(vim.lsp.buf.signature_help)
+    end, { silent = true })
+
+    -- Automatically show signature help in insert mode on common triggers
+    vim.api.nvim_create_autocmd({ "TextChangedI", "CursorHoldI" }, {
+      pattern = "*",
+      callback = function()
+        local col = vim.fn.col('.') - 1
+        if col <= 0 then
+          return
+        end
+        local line = vim.api.nvim_get_current_line()
+        local c = line:sub(col, col)
+        if c == '(' or c == ',' then
+          vim.schedule(function()
+            pcall(vim.lsp.buf.signature_help)
+          end)
+        end
+      end,
+    })
+
     vim.diagnostic.config({
       virtual_lines = true,
       underline = true,
@@ -53,7 +87,8 @@ return {
     -- local lspconfig = require("lspconfig")
     -- lspconfig = vim.lsp.config
     vim.lsp.config("pyrefly", {
-      cmd = { "pyrefly", "lsp" },
+      cmd = { "uvx", "pyrefly", "lsp" },
+      filetypes = { "python" },
     })
 
     -- vim.lsp.config("basedpyright", {

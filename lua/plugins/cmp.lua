@@ -11,7 +11,12 @@ return {
 
     cmp.setup({
       fuzzy = { implementation = "lua" },
-      signature = { enabled = true },
+      signature = {
+        enabled = true,
+        trigger = {
+          show_on_insert_on_trigger_character = true,
+        },
+      },
       keymap = {
         ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
         ["<CR>"] = { "accept", "fallback" },
