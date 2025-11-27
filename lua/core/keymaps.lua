@@ -51,7 +51,6 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Oil File Explorer" })
 vim.keymap.set("n", "<leader>L", "<cmd>Lazy update<CR>", { desc = "Open [L]azy" })
 vim.keymap.set("n", "<leader>M", "<cmd>Mason<CR>", { desc = "Open [M]ason Window" })
-
 vim.keymap.set(
   "n",
   "<leader>mp",
