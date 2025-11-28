@@ -1,7 +1,7 @@
 -- Leader keys (must be before plugins)
 --
-vim.g.mapleader = "\\"
-vim.g.maplocalleader = " "
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = true
 
 -- Load core settings
