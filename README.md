@@ -8,18 +8,18 @@ A modern, feature-rich Neovim configuration built specifically for Neovim 0.11.4
 - [x] add lsp support for JSON
 - [x] add lsp support for Markdown with mermaid diagrams preview
 
-## ✨ Features
+## Features
 
 ### Core Functionality
 
 - **lazy.nvim** - Modern plugin manager with lazy loading
 - **LSP Support** - Complete Language Server Protocol setup for:
   - Lua (`lua_ls`)
-  - **Python** (`basedpyright`, `ruff`)
+  - **Python** (`pyrefly`, `ruff`, `black`)
   - **Go** (`gopls`)
-  - TOML (`taplo`)
-  - JSON (`jsonls`)
-  - Markdown (`marksman`)
+  - **TOML** (`taplo`)
+  - **JSON** (`jsonls`)
+  - **Markdown** (`marksman`)
 - **Auto-completion** - `blink.cmp` for fast, modern completion
 - **Fuzzy Finding** - `fzf-lua` for blazing fast file/text search
 - **Syntax Highlighting** - Treesitter with extensive language support
@@ -48,7 +48,7 @@ A modern, feature-rich Neovim configuration built specifically for Neovim 0.11.4
 - **Diagnostics** - Real-time error and warning display
 - **Git Integration** - Visual git status, blame, and hunk navigation
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -90,7 +90,7 @@ A modern, feature-rich Neovim configuration built specifically for Neovim 0.11.4
 2. In Neovim, run `:Copilot auth` to authenticate
 3. Run `:Copilot enable` to activate
 
-## ⌨️ Key Mappings
+## Key Mappings
 
 ### Leader Key
 
@@ -147,7 +147,7 @@ A modern, feature-rich Neovim configuration built specifically for Neovim 0.11.4
 | ------------ | ----------------------- |
 | `<leader>mp` | Toggle Markdown Preview |
 
-## 📁 Configuration Structure
+## Configuration Structure
 
 ```
 ├── init.lua
@@ -172,7 +172,7 @@ A modern, feature-rich Neovim configuration built specifically for Neovim 0.11.4
         └── copilot-chat.lua -- Copilot Chat
 ```
 
-## 🎨 Customization
+## Customization
 
 ### Changing Colorscheme
 
@@ -195,7 +195,7 @@ end,
 
 Add your keybindings to `lua/config/keymaps.lua` or in the respective plugin files.
 
-## 🔧 Neovim 0.11.4+ Features Used
+## Neovim 0.11.4+ Features Used
 
 - `vim.loader.enable()` - Faster Lua module loading
 - `vim.uv` - New UV bindings for file system operations
@@ -204,7 +204,7 @@ Add your keybindings to `lua/config/keymaps.lua` or in the respective plugin fil
 - Modern autocommand API
 - Updated keymap API
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -219,7 +219,7 @@ Add your keybindings to `lua/config/keymaps.lua` or in the respective plugin fil
 - Press `<leader>` and wait to see available keybindings
 - Use `:help` followed by any command for documentation
 
-## 📝 Notes
+## Notes
 
 This configuration is designed to be:
 

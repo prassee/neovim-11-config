@@ -5,7 +5,7 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         go = { "goimports", "golines", "gofmt" },
-        python = { "ruff", "black" },
+        python = { "black" },
         toml = { "taplo" },
         json = { "prettier" },
         jsonc = { "prettier" },
@@ -15,4 +15,3 @@ return {
     })
   end,
 }
-
