@@ -169,36 +169,8 @@ map("n", "[h", "<cmd>Gitsigns prev_hunk<CR>", { desc = "Previous hunk" })
 -- =============================================================================
 -- LSP: <leader>l
 -- =============================================================================
-local lsp_goto_maps = {
-	{ "lgd", fzf.lsp_definitions, "Definition" },
-	{ "lgD", fzf.lsp_declarations, "Declaration" },
-	{ "lgi", fzf.lsp_implementations, "Implementation" },
-	{ "lgt", fzf.lsp_typedefs, "Type definition" },
-}
-for _, km in ipairs(lsp_goto_maps) do
-	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
-end
-
-local lsp_find_maps = {
-	{ "lr", fzf.lsp_references, "References" },
-	{ "ls", fzf.lsp_document_symbols, "Document symbols" },
-	{ "lS", fzf.lsp_workspace_symbols, "Workspace symbols" },
-}
-for _, km in ipairs(lsp_find_maps) do
-	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
-end
-
-local lsp_action_maps = {
-	{ "la", fzf.lsp_code_actions, "Code actions" },
-	{ "ln", vim.lsp.buf.rename, "Rename symbol" },
-	{ "lh", vim.lsp.buf.hover, "Hover documentation" },
-	{ "lf", format_buffer, "Format buffer" },
-}
-for _, km in ipairs(lsp_action_maps) do
-	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
-end
-
 -- Diagnostics: <leader>lx
+-- =============================================================================
 local lsp_diag_maps = {
 	{ "lxd", fzf.diagnostics_document, "Document diagnostics" },
 	{ "lxw", fzf.diagnostics_workspace, "Workspace diagnostics" },
@@ -206,9 +178,9 @@ local lsp_diag_maps = {
 for _, km in ipairs(lsp_diag_maps) do
 	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
 end
-
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
+-- Neovim 0.11 defaults ]d and [d automatically
+-- map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+-- map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
 
 -- =============================================================================
 -- Window: <leader>w
@@ -258,7 +230,7 @@ map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 -- =============================================================================
 local plugin_maps = {
 	{ "pm", "<cmd>Mason<CR>", "Mason" },
-	{ "pu", "<cmd>lua vim.pack.update()<CR>", "Update plugins" },
+	{ "pu", "<cmd>Lazy update<CR>", "Update plugins" },
 	{ "pk", "<cmd>Kanban<CR>", "Kanban board" },
 	{ "ptp", "<cmd>TypstPreview<CR>", "Typst preview" },
 	{ "pts", "<cmd>TypstPreviewStop<CR>", "Typst preview stop" },
@@ -274,11 +246,7 @@ end
 map("n", "-", "<cmd>Oil<cr>", { desc = "File explorer (Oil)" })
 
 -- =============================================================================
--- Copilot
+-- Opencode
 -- =============================================================================
-map(
-	"i",
-	"<S-Tab>",
-	'copilot#Accept("\\<S-Tab>")',
-	{ expr = true, replace_keycodes = false, desc = "Copilot accept suggestion" }
-)
+map("n", "<leader>oc", function() require("opencode.api").toggle() end, { desc = "Opencode toggle" })
+map("n", "<leader>oh", function() require("opencode.api").timeline() end, { desc = "Opencode timeline" })

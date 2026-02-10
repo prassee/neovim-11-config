@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 -- =============================================================================
 -- INIT.LUA - Neovim Configuration
 -- =============================================================================
@@ -5,14 +7,14 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -36,7 +38,6 @@ vim.g.native_lsp_completion = false -- Disable Neovim 0.11+ native LSP completio
 -- -----------------------------------------------------------------------------
 -- Line Numbers
 -- -----------------------------------------------------------------------------
-vim.opt.number = true
 vim.opt.relativenumber = false
 
 -- -----------------------------------------------------------------------------
@@ -57,13 +58,11 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 -- -----------------------------------------------------------------------------
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.inccommand = "split"
 
 -- -----------------------------------------------------------------------------
 -- Text Wrapping
 -- -----------------------------------------------------------------------------
 vim.opt.wrap = true
-vim.opt.breakindent = true
 
 -- -----------------------------------------------------------------------------
 -- Tabs & Indentation
@@ -93,61 +92,78 @@ vim.opt.undofile = true
 -- Diagnostics
 -- -----------------------------------------------------------------------------
 vim.diagnostic.config({
-  virtual_lines = {
-    current_line = true,
-  },
-  underline = true,
-  update_in_insert = false,
-  severity_sort = true,
-  float = { border = "rounded", source = true },
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "✘",
-      [vim.diagnostic.severity.WARN] = "⚠",
-      [vim.diagnostic.severity.INFO] = "💡",
-      [vim.diagnostic.severity.HINT] = "ℹ",
-    },
-    numhl = {
-      [vim.diagnostic.severity.ERROR] = "ErrorMsg",
-      [vim.diagnostic.severity.WARN] = "WarningMsg",
-    },
-  },
+	virtual_lines = {
+		current_line = true,
+	},
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+	float = { border = "rounded", source = true },
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "✘",
+			[vim.diagnostic.severity.WARN] = "⚠",
+			[vim.diagnostic.severity.INFO] = "💡",
+			[vim.diagnostic.severity.HINT] = "ℹ",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+			[vim.diagnostic.severity.WARN] = "WarningMsg",
+		},
+	},
 })
 
 vim.g.opencode_opts = {
-  provider = {
-    enabled = "wezterm",
-  },
+	provider = {
+		enabled = "wezterm",
+	},
 }
+
+-- -----------------------------------------------------------------------------
+-- Pack Command
+-- -----------------------------------------------------------------------------
+vim.api.nvim_create_user_command("Pack", function(opts)
+	local cmd = opts.fargs[1]
+	if cmd == "update" then
+		vim.cmd("Lazy update")
+	else
+		print("Usage: :Pack [update]")
+	end
+end, {
+	nargs = 1,
+	complete = function()
+		return { "update" }
+	end,
+})
 
 -- =============================================================================
 -- SECTION 2: LAZY SETUP
 -- =============================================================================
 
 require("lazy").setup("plugins", {
-  defaults = {
-    lazy = false,
-  },
-  install = {
-    colorscheme = { "catppuccin" },
-  },
-  ui = {
-    border = "rounded",
-  },
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-      },
-    },
-  },
+	defaults = {
+		lazy = false,
+	},
+	install = {
+		colorscheme = { "catppuccin" },
+	},
+	ui = {
+		border = "rounded",
+	},
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
+	},
 })
 
 -- =============================================================================
@@ -155,14 +171,15 @@ require("lazy").setup("plugins", {
 -- =============================================================================
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 -- =============================================================================
 -- SECTION 4: KEYMAPS
 -- =============================================================================
 require("keymaps")
+
