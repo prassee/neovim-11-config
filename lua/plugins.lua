@@ -21,6 +21,11 @@ return {
           enabled = true,
         },
         ui = {
+          prompt = {
+            copilot = {
+              enabled = false,
+            },
+          },
           output = {
             rendering = {
               on_data_rendered = false, -- Disable markdown rendering to avoid potential issues
