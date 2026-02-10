@@ -1,12 +1,11 @@
-# Neovim Config Board
+# Kanban Board
 
 ## Backlog
-- [ ] Create a master kanban board
-- [ ] Move to Neovim 0.12 based config
-- [ ] make a new branch optimized for Mac Keyboards
+- [ ] move to tmux popups for displaying Lazygit
 
 ## In Progress
-- [ ] fix co-pilot keybinidng conflicts
-- [ ] integrate open-code Nvim
 
 ## Done
+- configure opencode 
+- create a modular structure (develop branch)
+- re-structure the keymaps to follow consistent structure

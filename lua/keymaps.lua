@@ -1,0 +1,284 @@
+-- =============================================================================
+-- KEYMAPS
+-- =============================================================================
+-- Keymap Prefix Reference:
+--   <leader>b  = Buffers
+--   <leader>f  = Find (fzf-lua search)
+--   <leader>g  = Git (gitsigns + fzf git)
+--   <leader>l  = LSP actions
+--   <leader>p  = Plugins (Mason, Pack, Kanban, Typst)
+--   <leader>t  = Terminal / Tools
+--   <leader>w  = Window management
+
+local fzf = require("fzf-lua")
+local Terminal = require("toggleterm.terminal").Terminal
+
+-- =============================================================================
+-- Terminal Instances
+-- =============================================================================
+local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
+local thoth = Terminal:new({ cmd = "thoth", direction = "float", hidden = true })
+
+-- =============================================================================
+-- Helper Functions
+-- =============================================================================
+
+-- Keymap helper to reduce boilerplate
+local function map(mode, lhs, rhs, opts)
+	opts = opts or {}
+	if not opts.desc then
+		error("Keymap for " .. lhs .. " requires a description")
+	end
+	vim.keymap.set(mode, lhs, rhs, opts)
+end
+
+-- Format buffer
+local function format_buffer()
+	require("conform").format()
+end
+
+-- Terminal toggles
+local function toggle_lazygit()
+	lazygit:toggle()
+end
+
+local function toggle_thoth()
+	thoth:toggle()
+end
+
+-- =============================================================================
+-- General: Saving & Quitting
+-- =============================================================================
+map({ "n", "i" }, "<leader>s", "<Esc><cmd>w<CR>", { desc = "Save", nowait = true })
+map("n", "<leader>q", ":wqall<CR>", { desc = "Quit all" })
+map("n", "<leader>S", "<cmd>source %<CR>", { desc = "Source current file" })
+map("n", "<leader>Q", ":qall!<CR>", { desc = "Force quit all" })
+map("n", "<leader>r", "<cmd>checktime<CR>", { desc = "Refresh file" })
+
+-- =============================================================================
+-- General: Search
+-- =============================================================================
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
+
+-- =============================================================================
+-- General: Line Navigation & Clipboard
+-- =============================================================================
+local line_nav = {
+	{ "n", "<leader>a", "^", "Go to line start" },
+	{ "n", "<leader>e", "$", "Go to line end" },
+	{ "i", "<C-a>", "<C-o>^", "Go to line start" },
+	{ "i", "<C-e>", "<End>", "Go to line end" },
+}
+for _, km in ipairs(line_nav) do
+	map(km[1], km[2], km[3], { desc = km[4] })
+end
+
+-- =============================================================================
+-- General: Jumplist Navigation
+-- =============================================================================
+local jumplist_nav = {
+	{ "<M-left>", "g;", "Older cursor position" },
+	{ "<M-right>", "g,", "Newer cursor position" },
+	{ "<leader>.", "`.", "Last edit location" },
+}
+for _, km in ipairs(jumplist_nav) do
+	map("n", km[1], km[2], { desc = km[3] })
+end
+
+-- =============================================================================
+-- General: Line Movement
+-- =============================================================================
+local line_move = {
+	{ "n", "<M-down>", ":m .+1<CR>==", "Move line down" },
+	{ "n", "<M-up>", ":m .-2<CR>==", "Move line up" },
+	{ "v", "<M-down>", ":m '>+1<CR>gv=gv", "Move selection down" },
+	{ "v", "<M-up>", ":m '<-2<CR>gv=gv", "Move selection up" },
+}
+for _, km in ipairs(line_move) do
+	map(km[1], km[2], km[3], { desc = km[4] })
+end
+
+-- =============================================================================
+-- General: Clipboard
+-- =============================================================================
+map("n", "<leader>y", "<cmd>%y+<CR>", { desc = "Yank buffer to clipboard" })
+map({ "n", "v" }, "<C-a>", "<Esc>ggVG", { desc = "Select all" })
+
+-- =============================================================================
+-- Buffers: <leader>b
+-- =============================================================================
+local buffer_maps = {
+	{ "bb", fzf.buffers, "List buffers" },
+	{ "bd", "<cmd>bdelete<CR>", "Delete buffer" },
+	{ "bn", "<cmd>bnext<CR>", "Next buffer" },
+	{ "bp", "<cmd>bprevious<CR>", "Previous buffer" },
+}
+for _, km in ipairs(buffer_maps) do
+	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
+end
+
+-- Buffer navigation with Alt+Shift+arrows
+map("n", "<M-S-left>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<M-S-right>", "<cmd>bnext<CR>", { desc = "Next buffer" })
+
+-- =============================================================================
+-- Find: <leader>f (fzf-lua)
+-- =============================================================================
+local find_maps = {
+	{ "ff", fzf.files, "Find files" },
+	{ "fg", fzf.live_grep, "Find grep" },
+	{ "fw", fzf.grep_cword, "Find word under cursor" },
+	{ "fh", fzf.help_tags, "Find help" },
+	{ "fc", fzf.commands, "Find commands" },
+	{ "fr", fzf.oldfiles, "Find recent files" },
+	{ "f/", fzf.blines, "Find in buffer" },
+}
+for _, km in ipairs(find_maps) do
+	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
+end
+
+-- =============================================================================
+-- Git: <leader>g (unified gitsigns + fzf git)
+-- =============================================================================
+local git_fzf_maps = {
+	{ "gs", fzf.git_status, "Git status" },
+	{ "gc", fzf.git_commits, "Git commits" },
+	{ "gC", fzf.git_bcommits, "Git buffer commits" },
+	{ "gb", fzf.git_branches, "Git branches" },
+}
+for _, km in ipairs(git_fzf_maps) do
+	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
+end
+
+local git_hunk_maps = {
+	{ "gp", "<cmd>Gitsigns preview_hunk<CR>", "Preview hunk" },
+	{ "gr", "<cmd>Gitsigns reset_hunk<CR>", "Reset hunk" },
+	{ "gR", "<cmd>Gitsigns reset_buffer<CR>", "Reset buffer" },
+	{ "gd", "<cmd>Gitsigns diffthis<CR>", "Diff this" },
+	{ "gl", "<cmd>Gitsigns toggle_current_line_blame<CR>", "Toggle line blame" },
+	{ "gB", "<cmd>Gitsigns blame<CR>", "Blame buffer" },
+}
+for _, km in ipairs(git_hunk_maps) do
+	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
+end
+
+-- Hunk navigation (standard [ ] motion)
+map("n", "]h", "<cmd>Gitsigns next_hunk<CR>", { desc = "Next hunk" })
+map("n", "[h", "<cmd>Gitsigns prev_hunk<CR>", { desc = "Previous hunk" })
+
+-- =============================================================================
+-- LSP: <leader>l
+-- =============================================================================
+local lsp_goto_maps = {
+	{ "lgd", fzf.lsp_definitions, "Definition" },
+	{ "lgD", fzf.lsp_declarations, "Declaration" },
+	{ "lgi", fzf.lsp_implementations, "Implementation" },
+	{ "lgt", fzf.lsp_typedefs, "Type definition" },
+}
+for _, km in ipairs(lsp_goto_maps) do
+	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
+end
+
+local lsp_find_maps = {
+	{ "lr", fzf.lsp_references, "References" },
+	{ "ls", fzf.lsp_document_symbols, "Document symbols" },
+	{ "lS", fzf.lsp_workspace_symbols, "Workspace symbols" },
+}
+for _, km in ipairs(lsp_find_maps) do
+	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
+end
+
+local lsp_action_maps = {
+	{ "la", fzf.lsp_code_actions, "Code actions" },
+	{ "ln", vim.lsp.buf.rename, "Rename symbol" },
+	{ "lh", vim.lsp.buf.hover, "Hover documentation" },
+	{ "lf", format_buffer, "Format buffer" },
+}
+for _, km in ipairs(lsp_action_maps) do
+	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
+end
+
+-- Diagnostics: <leader>lx
+local lsp_diag_maps = {
+	{ "lxd", fzf.diagnostics_document, "Document diagnostics" },
+	{ "lxw", fzf.diagnostics_workspace, "Workspace diagnostics" },
+}
+for _, km in ipairs(lsp_diag_maps) do
+	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
+end
+
+map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
+
+-- =============================================================================
+-- Window: <leader>w
+-- =============================================================================
+local window_cmd_maps = {
+	{ "wv", "<cmd>vsplit<CR>", "Split vertical" },
+	{ "ws", "<cmd>split<CR>", "Split horizontal" },
+	{ "wc", "<cmd>close<CR>", "Close window" },
+	{ "wo", "<cmd>only<CR>", "Close other windows" },
+	{ "w=", "<C-w>=", "Balance windows" },
+}
+for _, km in ipairs(window_cmd_maps) do
+	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
+end
+
+-- Window navigation (hjkl and arrow keys map to same commands)
+local nav_keys = {
+	{ { "h", "<left>" }, "<C-w>h", "Go left" },
+	{ { "j", "<down>" }, "<C-w>j", "Go down" },
+	{ { "k", "<up>" }, "<C-w>k", "Go up" },
+	{ { "l", "<right>" }, "<C-w>l", "Go right" },
+}
+for _, map_group in ipairs(nav_keys) do
+	for _, key in ipairs(map_group[1]) do
+		map("n", "<leader>w" .. key, map_group[2], { desc = map_group[3] })
+	end
+end
+
+-- =============================================================================
+-- Terminal: <leader>t
+-- =============================================================================
+local terminal_maps = {
+	{ "tt", ":ToggleTerm direction=float<CR>", "Toggle terminal" },
+	{ "th", ":ToggleTerm direction=horizontal<CR>", "Terminal horizontal" },
+	{ "tv", ":ToggleTerm direction=vertical<CR>", "Terminal vertical" },
+	{ "tg", toggle_lazygit, "Lazygit" },
+	{ "to", toggle_thoth, "Thoth" },
+}
+for _, km in ipairs(terminal_maps) do
+	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
+end
+
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+-- =============================================================================
+-- Plugins: <leader>p
+-- =============================================================================
+local plugin_maps = {
+	{ "pm", "<cmd>Mason<CR>", "Mason" },
+	{ "pu", "<cmd>lua vim.pack.update()<CR>", "Update plugins" },
+	{ "pk", "<cmd>Kanban<CR>", "Kanban board" },
+	{ "ptp", "<cmd>TypstPreview<CR>", "Typst preview" },
+	{ "pts", "<cmd>TypstPreviewStop<CR>", "Typst preview stop" },
+	{ "ptt", "<cmd>TypstPreviewToggle<CR>", "Typst preview toggle" },
+}
+for _, km in ipairs(plugin_maps) do
+	map("n", "<leader>" .. km[1], km[2], { desc = km[3] })
+end
+
+-- =============================================================================
+-- File Explorer: Oil
+-- =============================================================================
+map("n", "-", "<cmd>Oil<cr>", { desc = "File explorer (Oil)" })
+
+-- =============================================================================
+-- Copilot
+-- =============================================================================
+map(
+	"i",
+	"<S-Tab>",
+	'copilot#Accept("\\<S-Tab>")',
+	{ expr = true, replace_keycodes = false, desc = "Copilot accept suggestion" }
+)
