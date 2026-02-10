@@ -248,5 +248,12 @@ map("n", "-", "<cmd>Oil<cr>", { desc = "File explorer (Oil)" })
 -- =============================================================================
 -- Opencode
 -- =============================================================================
-map("n", "<leader>oc", function() require("opencode.api").toggle() end, { desc = "Opencode toggle" })
-map("n", "<leader>oh", function() require("opencode.api").timeline() end, { desc = "Opencode timeline" })
+map("n", "<leader>oc", function()
+	require("opencode.api").toggle()
+end, { desc = "Opencode toggle" })
+map("n", "<leader>oh", function()
+	require("opencode.api").timeline()
+end, { desc = "Opencode timeline" })
+map("n", "<leader>om", function()
+	require("opencode.api").select_agent()
+end, { desc = "Opencode select agent" })
