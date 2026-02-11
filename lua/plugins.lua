@@ -403,15 +403,29 @@ return {
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
+			require("catppuccin").setup({
+				custom_highlights = function(colors)
+					return {
+						WinSeparator = { fg = colors.overlay1 },
+						VertSplit = { fg = colors.overlay1 },
+						FloatBorder = { fg = colors.overlay1 },
+					}
+				end,
+			})
 			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
 		config = function()
+			local theme = require("lualine.themes.catppuccin")
+			theme.inactive.c.bg = "#585b70" -- Surface2 (lighter than base/mantle)
+			theme.inactive.a.bg = "#585b70"
+			theme.inactive.b.bg = "#585b70"
+
 			require("lualine").setup({
 				options = {
-					theme = "auto",
+					theme = theme,
 				},
 				sections = {
 					lualine_a = { "mode" },
@@ -507,6 +521,13 @@ return {
 	},
 	{
 		"github/copilot.vim",
+		config = function()
+			vim.g.copilot_filetypes = {
+				["opencode"] = false,
+				["opencode_prompt"] = false,
+				["opencode-prompt"] = false,
+			}
+		end,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -539,4 +560,3 @@ return {
 		end,
 	},
 }
-

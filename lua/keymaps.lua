@@ -49,7 +49,7 @@ end
 -- =============================================================================
 -- General: Saving & Quitting
 -- =============================================================================
-map({ "n", "i" }, "<leader>s", "<Esc><cmd>w<CR>", { desc = "Save", nowait = true })
+map("n", "<leader>s", "<Esc><cmd>w<CR>", { desc = "Save", nowait = true })
 map("n", "<leader>q", ":wqall<CR>", { desc = "Quit all" })
 map("n", "<leader>S", "<cmd>source %<CR>", { desc = "Source current file" })
 map("n", "<leader>Q", ":qall!<CR>", { desc = "Force quit all" })
@@ -254,6 +254,6 @@ end, { desc = "Opencode toggle" })
 map("n", "<leader>oh", function()
 	require("opencode.api").timeline()
 end, { desc = "Opencode timeline" })
-map("n", "<leader>om", function()
+map("n", "<leader>os", function()
 	require("opencode.api").select_agent()
 end, { desc = "Opencode select agent" })
